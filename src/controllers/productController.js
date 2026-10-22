@@ -6,17 +6,20 @@ const asyncHandler = require('../utils/asyncHandler');
 // body: { name, price, description?, stock? }
 // ---------------------------------------------------------------
 exports.createProduct = asyncHandler(async (req, res) => {
-  const { name, price, description, stock } = req.body;
+  const { id, title, price, description, category, image, rating } = req.body;
 
-  if (!name || price === undefined) {
+  if (!title || price === undefined) {
     return res.status(400).json({ success: false, message: 'name and price are required' });
   }
 
   const product = await Product.create({
-    name,
+    id,
+    title,
     price,
     description,
-    stock,
+    category,
+    image,
+    rating,
     createdBy: req.user._id,
   });
 
@@ -24,7 +27,7 @@ exports.createProduct = asyncHandler(async (req, res) => {
 });
 
 // ---------------------------------------------------------------
-// GET /api/products?page=1   -> 10 products per page
+// GET /api/products?page=1   (protected) -> 10 products per page
 // ---------------------------------------------------------------
 exports.getProducts = asyncHandler(async (req, res) => {
   const LIMIT = 10;

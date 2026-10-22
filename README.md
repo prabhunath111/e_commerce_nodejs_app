@@ -173,7 +173,7 @@ Authorization: Bearer <accessToken>
 | 4 | POST | `/api/auth/logout` | Yes | Logout |
 | 5 | GET | `/api/users/me` | Yes | My profile |
 | 6 | POST | `/api/products` | Yes | Insert a product |
-| 7 | GET | `/api/products?page=1` | No | List products (10/page) |
+| 7 | GET | `/api/products?page=1` | Yes | List products (10/page) |
 | 8 | GET | `/api/cart` | Yes | My cart |
 | 9 | POST | `/api/cart/add` | Yes | Add product to cart |
 | 10 | DELETE | `/api/cart/remove/:productId` | Yes | Remove product from cart |
