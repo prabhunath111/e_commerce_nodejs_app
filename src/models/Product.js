@@ -14,8 +14,6 @@ const productSchema = new mongoose.Schema(
       count: {
         type: Number,
         default: 0,
-        min: 0,
-        max: 5,
         validate: { validator: Number.isInteger, message: 'Count must be an integer' },
       },
       },
