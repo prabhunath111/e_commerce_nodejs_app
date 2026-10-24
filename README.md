@@ -7,7 +7,8 @@ A small, simple backend project that teaches the **most asked topics in Node.js 
 - JWT **Access Token** + **Refresh Token** (+ refresh API, logout)
 - Protected routes using middleware
 - Products API with **pagination (10 per page)**
-- Cart API (per user)
+- Cart and favorites APIs (per user)
+- Protected product reviews
 - Profile API
 
 ---
@@ -177,6 +178,15 @@ Authorization: Bearer <accessToken>
 | 8 | GET | `/api/cart` | Yes | My cart |
 | 9 | POST | `/api/cart/add` | Yes | Add product to cart |
 | 10 | DELETE | `/api/cart/remove/:productId` | Yes | Remove product from cart |
+| 11 | GET | `/api/favorites` | Yes | My favorite products |
+| 12 | POST | `/api/favorites` | Yes | Add a favorite (`productId`) |
+| 13 | DELETE | `/api/favorites/:productId` | Yes | Remove a favorite |
+| 14 | GET | `/api/reviews/:productId` | Yes | List reviews for a product |
+| 15 | POST | `/api/reviews` | Yes | Review a product (`productId`, `rating`, optional `comment`) |
+| 16 | PATCH | `/api/reviews/:reviewId` | Yes | Update your review |
+| 17 | DELETE | `/api/reviews/:reviewId` | Yes | Delete your review |
+
+Favorites and reviews are scoped to the authenticated user. A user can submit only one review per product and can update or delete only their own reviews. Ratings must be integers from 1 to 5.
 
 ### 1. Signup
 ```bash

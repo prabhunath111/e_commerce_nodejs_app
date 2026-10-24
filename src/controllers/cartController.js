@@ -19,7 +19,7 @@ const formatCart = (cart) => {
 // GET /api/cart   (protected) -> my cart
 // ---------------------------------------------------------------
 exports.getMyCart = asyncHandler(async (req, res) => {
-  const cart = await Cart.findOne({ user: req.user._id }).populate('items.product', 'name price');
+  const cart = await Cart.findOne({ user: req.user._id }).populate('items.product', 'title price');
 
   if (!cart) {
     return res.json({ success: true, cart: { items: [], totalItems: 0, totalPrice: 0 } });
@@ -60,7 +60,7 @@ exports.addToCart = asyncHandler(async (req, res) => {
   }
 
   await cart.save();
-  await cart.populate('items.product', 'name price');
+  await cart.populate('items.product', 'title price');
 
   res.status(201).json({ success: true, message: 'Added to cart', cart: formatCart(cart) });
 });
@@ -78,7 +78,7 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
 
   cart.items = cart.items.filter((item) => item.product.toString() !== productId);
   await cart.save();
-  await cart.populate('items.product', 'name price');
+  await cart.populate('items.product', 'title price');
 
   res.json({ success: true, message: 'Removed from cart', cart: formatCart(cart) });
 });
