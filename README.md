@@ -175,16 +175,19 @@ Authorization: Bearer <accessToken>
 | 5 | GET | `/api/users/me` | Yes | My profile |
 | 6 | POST | `/api/products` | Yes | Insert a product |
 | 7 | GET | `/api/products?page=1` | Yes | List products (10/page) |
-| 8 | GET | `/api/cart` | Yes | My cart |
-| 9 | POST | `/api/cart/add` | Yes | Add product to cart |
-| 10 | DELETE | `/api/cart/remove/:productId` | Yes | Remove product from cart |
-| 11 | GET | `/api/favorites` | Yes | My favorite products |
-| 12 | POST | `/api/favorites` | Yes | Add a favorite (`productId`) |
-| 13 | DELETE | `/api/favorites/:productId` | Yes | Remove a favorite |
-| 14 | GET | `/api/reviews/:productId` | Yes | List reviews for a product |
-| 15 | POST | `/api/reviews` | Yes | Review a product (`productId`, `rating`, optional `comment`) |
-| 16 | PATCH | `/api/reviews/:reviewId` | Yes | Update your review |
-| 17 | DELETE | `/api/reviews/:reviewId` | Yes | Delete your review |
+| 8 | GET | `/api/products?category=electronics` | Yes | Search product categories by keyword |
+| 9 | GET | `/api/cart` | Yes | My cart |
+| 10 | POST | `/api/cart/add` | Yes | Add product to cart |
+| 11 | DELETE | `/api/cart/remove/:productId` | Yes | Remove product from cart |
+| 12 | GET | `/api/favorites` | Yes | My favorite products |
+| 13 | POST | `/api/favorites` | Yes | Add a favorite (`productId`) |
+| 14 | DELETE | `/api/favorites/:productId` | Yes | Remove a favorite |
+| 15 | GET | `/api/reviews/:productId` | Yes | List reviews for a product |
+| 16 | POST | `/api/reviews` | Yes | Review a product (`productId`, `rating`, optional `comment`) |
+| 17 | PATCH | `/api/reviews/:reviewId` | Yes | Update your review |
+| 18 | DELETE | `/api/reviews/:reviewId` | Yes | Delete your review |
+
+The product list accepts an optional `category` keyword. Matching is case-insensitive and checks for the keyword anywhere in the category; pagination and counts apply to the filtered results. For example, `GET /api/products?page=1&category=elect` returns categories such as `Electronics`.
 
 Favorites and reviews are scoped to the authenticated user. A user can submit only one review per product and can update or delete only their own reviews. Ratings must be integers from 1 to 5.
 
